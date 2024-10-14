@@ -3,8 +3,9 @@ package policyexpert.codelab.eventdriven.payment;
 import policyexpert.codelab.eventdriven.messagebroker.Message;
 import policyexpert.codelab.eventdriven.messagebroker.MessageQueue;
 
-import java.util.Collections;
 import java.util.Map;
+
+import static policyexpert.codelab.eventdriven.shared.AnsiColor.ANSI_CYAN;
 
 public class PaymentService {
 
@@ -21,7 +22,7 @@ public class PaymentService {
             String value
     ) {
         String body = email + ", " + value;
-        System.out.println("Publishing message: " + body);
+        ANSI_CYAN.print("Publishing message: " + body);
         messageQueue.publishMessage(
                 new Message(Map.of("email", email), value)
         );
