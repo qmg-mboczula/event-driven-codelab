@@ -19,12 +19,15 @@ public class PaymentService {
 
     public void publishPaymentSuccessful(
             String email,
+            String phone,
             String value
     ) {
-        String body = email + ", " + value;
+        String body = email + ", " + phone + ", " + value;
         ANSI_CYAN.print("Publishing message: " + body);
         messageQueue.publishMessage(
-                new Message(Map.of("email", email), value)
+                new Message(
+                        Map.of("email", email, "phone", phone),
+                        value)
         );
     }
 }

@@ -4,6 +4,7 @@ import policyexpert.codelab.eventdriven.payment.PaymentService;
 
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
@@ -23,8 +24,9 @@ public class Main {
                 try {
                     sleep(1000);
                     paymentService.publishPaymentSuccessful(
-                            UUID.randomUUID() + "@" + UUID.randomUUID() + ".com",
-                            Integer.toString(random.nextInt(100))
+                            generateRandomEmail(),
+                            generateRandomPhoneNumber(),
+                            generateRandomBody()
                     );
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -46,5 +48,20 @@ public class Main {
         paymentSuccessfulPublisherThread.join();
         messageDispatcherThread.join();
 
+    }
+
+    private static String generateRandomEmail() {
+        return UUID.randomUUID() + "@email.com";
+    }
+
+    private static String generateRandomPhoneNumber() {
+        return String.join("", IntStream.range(0, 9)
+                .mapToObj(i ->
+                        Integer.toString(random.nextInt(0, 9))).toList()
+        );
+    }
+
+    private static String generateRandomBody() {
+        return Integer.toString(random.nextInt(100));
     }
 }
