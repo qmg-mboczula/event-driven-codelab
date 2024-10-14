@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/message-broker" />
             <option value="$PROJECT_DIR$/notification-service" />
             <option value="$PROJECT_DIR$/payment-service" />
+            <option value="$PROJECT_DIR$/shared" />
           </set>
         </option>
       </GradleProjectSettings>
